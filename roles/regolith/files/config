@@ -99,6 +99,9 @@ bindsym $mod+Shift+question exec --no-startup-id $i3-wm.program.help
 set_from_resource $i3-wm.program.file_search i3-wm.program.file_search rofi -show find -modi find:/usr/share/rofi/modi/finder.sh
 bindsym $mod+$alt+space exec $i3-wm.program.file_search
 
+## Screenshot
+bindsym Print exec $HOME/.config/rofi/scripts/scrot.sh 
+
 ###############################################################################
 # Window and Workspace Navigation
 ###############################################################################
