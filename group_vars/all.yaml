@@ -1,0 +1,20 @@
+package_install:
+  - playerctl
+  - gparted
+  - papirus-icon-theme
+  - htop
+  - nitrogen
+  - numlockx
+
+package_remove:
+  - pop-shop
+
+zsh_plugins:
+  - name: zsh-syntax-highlighting
+    url: https://github.com/zsh-users/zsh-syntax-highlighting.git
+  - name: zsh-autosuggestions
+    url: https://github.com/zsh-users/zsh-autosuggestions 
+  - name: forgit
+    url: https://github.com/wfxr/forgit
+  - name: warhol
+    url: https://github.com/unixorn/warhol.plugin.zsh.git

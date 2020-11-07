@@ -1,0 +1,65 @@
+- name: Install dependencies for build
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ package_list }}"
+
+- name: Check if oh-my-zsh already exist
+  stat:
+    path: /usr/bin/ly 
+  register: file_details
+
+- name: Clone Ly repository
+  git:
+    repo: https://github.com/nullgemm/ly.git
+    dest: /tmp/ly
+    force: yes
+  when: not file_details.stat.exists
+
+- name: Fetch submodules
+  make:
+    chdir: /tmp/ly
+    target: github
+  when: not file_details.stat.exists
+
+- name: Make Ly
+  make:
+    chdir: /tmp/ly
+  when: not file_details.stat.exists
+
+- name: Instal Ly
+  make:
+    chdir: /tmp/ly
+    target: install
+  become: true
+  when: not file_details.stat.exists
+
+- name: Configure PAM for Gnome Keyring
+  copy:
+    src: ly
+    dest: /etc/pam.d/
+  become: true
+
+- name: Configure PolicyKit for reboot
+  copy:
+    src: 50-allow_all_users_to_restart.conf
+    dest: /etc/polkit-1/localauthority.conf.d/
+  become: true
+
+- name: Configure PolicyKit for shutdown
+  copy:
+    src: 50-allow_all_users_to_shutdown.conf
+    dest: /etc/polkit-1/localauthority.conf.d/
+  become: true
+
+- name: Disable GDM3
+  systemd:
+    name: gdm3
+    enabled: no
+  become: true
+
+- name: Enable Ly
+  systemd:
+    name: ly.service
+    enabled: true
+  become: true

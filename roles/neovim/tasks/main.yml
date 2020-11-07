@@ -1,0 +1,30 @@
+- name: Remove VIM
+  package:
+    name: vim-nox
+    state: absent
+
+- name: Install NeoVIM
+  package:
+    name: neovim
+    state: present
+
+- name: Create nvim directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/{{ item }}"
+    state: directory
+    recurse: yes
+  loop: "{{ directory_list }}"
+
+- name: Install Plugged
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "{{ lookup('env', 'HOME') }}/{{ data_dir }}"
+
+- name: Configure NeoVIM
+  copy:
+    src: init.vim
+    dest: "{{ lookup('env', 'HOME') }}/{{ config_dir }}"
+
+- name: Install all plugins
+  shell: "nvim -es -u {{ lookup('env', 'HOME') }}/{{ config_dir }}/init.vim -i NONE -c 'PlugInstall' -c 'qa' | exit 0"
+

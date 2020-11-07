@@ -1,0 +1,45 @@
+- name: Add Regolith repo
+  apt_repository:
+    repo: ppa:regolith-linux/release
+  become: true
+  ignore_errors: true
+
+- name: Install Regolith
+  package:
+    name: regolith-desktop
+    state: present
+  become: true
+
+- name: Create Regolith config directory
+  file:
+    path: "{{ config_dir }}/i3"
+    state: directory
+    recurse: yes
+
+- name: Configure i3
+  copy:
+    src: config
+    dest: "{{ config_dir }}/i3"
+
+- name: Configure Xressources
+  copy:
+    src: Xresources
+    dest: "{{ config_dir }}/Xresources"
+
+- name: Create local bin directory
+  file:
+    path: "{{ local_bin_dir }}"
+    state: directory
+    recurse: yes
+
+- name: Install Awesome-auto-layout
+  get_url:
+    url: https://gitlab.com/s3lect/awesome-i3-auto-layout/-/raw/master/awesome-auto-layout
+    dest: "{{ local_bin_dir }}"
+    mode: 0755
+
+- name: Fix Picom with nvidia
+  copy:
+    src: init
+    dest: /usr/share/regolith-compositor/init
+    mode: 0755

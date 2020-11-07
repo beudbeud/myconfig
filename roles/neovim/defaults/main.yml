@@ -1,0 +1,7 @@
+config_dir: "{{ lookup('env', 'HOME') }}/.config/nvim"
+
+data_dir: "{{ lookup('env', 'HOME') }}/.local/share/nvim/site/autoload/"
+
+directory_list:
+  - "{{ config_dir }}"
+  - "{{ data_dir }}"

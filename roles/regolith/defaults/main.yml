@@ -1,0 +1,3 @@
+config_dir: "{{ lookup('env', 'HOME') }}/.config/regolith"
+
+local_bin_dir: "{{ lookup('env', 'HOME') }}/.local/bin"

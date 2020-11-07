@@ -1,0 +1,39 @@
+- name: Install zsh
+  package:
+    name: zsh
+    state: present
+  become: yes
+
+- name: Change default shell
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: /bin/zsh
+  become: yes
+
+- name: Check if oh-my-zsh already exist
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/oh-my-zsh.sh" 
+  register: file_details
+
+- name: Install oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  when: not file_details.stat.exists
+
+- name: Configure oh-my-zsh
+  copy:
+    src: .zshrc
+    dest: "{{ lookup('env', 'HOME') }}"
+
+- name: Configure Powerlevel10k
+  copy:
+    src: .p10k.zsh
+    dest: "{{ lookup('env', 'HOME') }}"
+
+- name: Install all plugins
+  git:
+    repo: "{{ item.url }}"
+    dest: "{{ oh_my_zsh_plugins_dir }}/{{ item.name }}"
+    clone: yes
+    update: yes
+  loop: "{{ zsh_plugins }}"
+

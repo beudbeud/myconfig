@@ -1,0 +1,19 @@
+- name: Install Kitty
+  package:
+    name: kitty
+    state: present
+
+- name: Create config directory
+  file:
+    path: "{{ config_dir }}"
+    state: directory
+
+- name: Configure Kitty
+  copy:
+    src: kitty.conf
+    dest: "{{ config_dir }}"
+
+- name: Make Kitty default terminal
+  alternatives:
+    name: x-terminal-emulator
+    path: /usr/bin/kitty
