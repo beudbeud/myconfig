@@ -42,13 +42,13 @@
 
 - name: Configure PolicyKit for reboot
   copy:
-    src: 50-allow_all_users_to_restart.conf
+    src: 52-allow_all_users_to_restart.conf
     dest: /etc/polkit-1/localauthority.conf.d/
   become: true
 
 - name: Configure PolicyKit for shutdown
   copy:
-    src: 50-allow_all_users_to_shutdown.conf
+    src: 52-allow_all_users_to_shutdown.conf
     dest: /etc/polkit-1/localauthority.conf.d/
   become: true
 

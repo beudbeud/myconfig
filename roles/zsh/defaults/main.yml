@@ -1,3 +1,5 @@
-oh_my_zsh_plugins_dir: "{{ lookup('env', 'HOME')}}/.oh-my-zsh/custom}/plugins/"
+oh_my_zsh_plugins_dir: "{{ lookup('env', 'HOME')}}/.oh-my-zsh/custom/plugins"
+oh_my_zsh_themes_dir: "{{ lookup('env', 'HOME')}}/.oh-my-zsh/custom/themes"
 
 zsh_plugins: []
+zsh_themes: []

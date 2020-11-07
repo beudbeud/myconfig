@@ -22,8 +22,8 @@
     dest: "{{ config_dir }}/i3"
 
 - name: Configure Xressources
-  copy:
-    src: Xresources
+  template:
+    src: Xresources.j2
     dest: "{{ config_dir }}/Xresources"
 
 - name: Create local bin directory
@@ -43,3 +43,4 @@
     src: init
     dest: /usr/share/regolith-compositor/init
     mode: 0755
+  become: true

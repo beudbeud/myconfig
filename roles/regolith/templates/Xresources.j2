@@ -1,13 +1,3 @@
-i3-wm.gaps.inner.size: 8
-gnome.wallpaper: /home/adrien/Images/open-sourcerer-2560×1440.jpg
-gnome.gtk.theme: dracula
-gnome.icon.theme: Papirus
-gnome.wm.theme: dracula
-i3-wm.client.focused.color.child_border: #ff79c6
-#i3-wm.window.border.size: 2
-rofi.theme: /home/adrien/.config/rofi/themes/dracula.rasi
-Xcursor.theme: Pop
-
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
 *.background: #282A36
@@ -27,3 +17,18 @@ Xcursor.theme: Pop
 *.color14:    #9AEDFE
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
+
+gnome.gtk.theme: dracula
+gnome.wm.theme: dracula
+gnome.icon.theme: Papirus
+gnome.wallpaper: {{ lookup('env', 'HOME') }}/Images/open-sourcerer-2560×1440.jpg
+
+i3-wm.gaps.inner.size: 8
+i3-wm.client.focused.color.child_border: #ff79c6
+i3-wm.window.border.size: 2
+i3-wm.font: pango:Ubuntu Nerd Font 13
+
+rofi.theme: {{ lookup('env', 'HOME') }}/.config/rofi/themes/dracula.rasi
+
+Xcursor.theme: Pop
+St.font: 

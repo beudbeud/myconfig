@@ -21,13 +21,13 @@
 
 - name: Configure oh-my-zsh
   copy:
-    src: .zshrc
-    dest: "{{ lookup('env', 'HOME') }}"
+    src: zshrc
+    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
 
 - name: Configure Powerlevel10k
   copy:
-    src: .p10k.zsh
-    dest: "{{ lookup('env', 'HOME') }}"
+    src: p10k.zsh
+    dest: "{{ lookup('env', 'HOME') }}/.p10k.zsh"
 
 - name: Install all plugins
   git:
@@ -37,3 +37,11 @@
     update: yes
   loop: "{{ zsh_plugins }}"
 
+- name: Install themes
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: "{{ oh_my_zsh_themes_dir }}/{{ item.name }}"
+    clone: yes
+    update: yes
+    depth: 1
+  loop: "{{ zsh_themes }}"

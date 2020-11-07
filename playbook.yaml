@@ -1,8 +1,8 @@
 - hosts: all
   roles:
-    - neovim
-    - ly
-    - kitty
-    - regolith
+    #- neovim
+    #- ly
+    #- kitty
+    #- regolith
     - zsh
-    - nerdfonts
+    #- nerdfonts

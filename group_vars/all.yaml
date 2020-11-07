@@ -19,6 +19,10 @@ zsh_plugins:
   - name: warhol
     url: https://github.com/unixorn/warhol.plugin.zsh.git
 
+zsh_themes:
+  - name: powerlevel10k
+    url: https://github.com/romkatv/powerlevel10k.git
+
 nf_user: "{{ lookup('env', 'USER') }}"
 
 nf_linux_fonts_dir: "{{ lookup('env', 'HOME') }}/.local/share/fonts"
