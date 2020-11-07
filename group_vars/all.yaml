@@ -18,3 +18,12 @@ zsh_plugins:
     url: https://github.com/wfxr/forgit
   - name: warhol
     url: https://github.com/unixorn/warhol.plugin.zsh.git
+
+nf_user: "{{ lookup('env', 'USER') }}"
+
+nf_linux_fonts_dir: "{{ lookup('env', 'HOME') }}/.local/share/fonts"
+
+nf_single_fonts:
+  - "UbuntuMono/Regular/complete/Ubuntu Mono Nerd Font Complete.ttf"
+  - "DroidSansMono/complete/Droid Sans Mono Nerd Font Complete.otf"
+  - "RobotoMono/Regular/complete/Roboto Mono Nerd Font Complete Mono.ttf"
