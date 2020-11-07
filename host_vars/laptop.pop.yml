@@ -1,0 +1,8 @@
+polybar_modules_left:
+  - i3
+  - xwindows
+
+polybar_fonts:
+  - "Ubuntuo Nerd Font:style=Regular:size=10:antialias=true;2"
+  - "unifont:fontformat=truetype:size=8:antialias=false;0"
+  - "Ubuntu Nerd Font:style=Regular:size=12:antialias=true;2"

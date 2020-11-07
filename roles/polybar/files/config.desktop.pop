@@ -49,7 +49,7 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3 
+line-size = 2 
 line-color = #f00
 
 border-size = 0 
@@ -61,13 +61,13 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Ubuntu Nerd Font:style=Regular:size=12:antialias=true;2"
+font-0 = "Ubuntuo Nerd Font:style=Regular:size=10:antialias=true;2"
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = "Ubuntu Nerd Font:style=Regular:size=12:antialias=true;2"
 
 modules-left = i3 xwindow
-modules-center = spotify previous playpause next
-modules-right = pulseaudio backlight cpu memory temperature battery wlan date powermenu
+modules-center = spotify spotify-prev spotify-play-pause spotify-next 
+modules-right = pulseaudio mic cpu memory temperature_amd nvidia date rofi_powermenu
 
 tray-position = right
 tray-padding = 2
@@ -82,7 +82,7 @@ enable-ipc = true
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = %title:20:20:...%
 
 [module/i3]
 type = internal/i3
@@ -121,17 +121,10 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 ; Separator in between workspaces
 ; label-separator = |
 
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
-enable-scroll = true
-
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "礪 "
+format-prefix = " "
 format-prefix-font = 1
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #FF79C6
@@ -143,31 +136,7 @@ interval = 1
 format-prefix = "ﴵ "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #F1FA8C
-label = %percentage_used:2%%
-
-[module/wlan]
-type = internal/network
-interface = wlp2s0
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-#label-connected = %essid%
-label-connected = %{A1:gnome-control-center wifi:}%essid%%{A}
-
-;format-disconnected =
-format-disconnected = <label-disconnected>
-format-disconnected-underline = #9f78e1
-#label-disconnected = 睊
-label-disconnected-foreground = ${colors.foreground-alt}
-label-disconnected = %{A1:gnome-control-center wifi:}睊%{A}
-
-ramp-signal-0 = 直
-ramp-signal-1 = 直
-ramp-signal-2 = 直
-ramp-signal-3 = 直
-ramp-signal-4 = 直
-ramp-signal-foreground = ${colors.foreground-alt}
+label = %percentage_used:2%% 
 
 [module/date]
 type = internal/date
@@ -211,42 +180,11 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC0
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #8BE9FD
-
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = ""
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = #8BE9FD
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
-
-[module/temperature]
+[module/temperature_amd]
 type = internal/temperature
-thermal-zone = 0
+interval = 2
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input
+base-temperature = 20                                                                                                                      
 warn-temperature = 60
 
 format = <ramp> <label>
@@ -262,6 +200,19 @@ ramp-0 = 﨎
 ramp-1 = 﨎
 ramp-2 = 﨎
 ramp-foreground = ${colors.foreground-alt}
+
+[module/nvidia]
+type = custom/script
+tail = true
+exec-if = nvidia-smi
+exec = nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits | sed -ur 's|([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)|\1°|g'
+interval = 2
+
+format-prefix = "ﳳ "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #CAA8FA
+
+label = %output%°C
 
 [module/rofi_powermenu]
 type = custom/script

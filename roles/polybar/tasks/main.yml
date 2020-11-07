@@ -2,4 +2,18 @@
   package:
     name: polybar
 
-- name: 
+- name: Create Polybar Directory
+  file:
+    path: "{{ polybar_config_dir }}/scripts"
+    state: directory
+    recurse: yes
+
+- name: Copy configuration
+  template:
+    src: config.j2
+    dest: /tmp/poly_config
+
+- debug:
+    msg: "{{ ansible_fqdn }}"
+
+

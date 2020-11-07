@@ -1,0 +1,7 @@
+polybar_config_dir: "{{ lookup('env', 'HOME') }}/.config/polybar"
+
+polybar_modules_left: []
+polybar_modules_center: []
+polybar_modules_right: []
+
+polybar_fonts: []

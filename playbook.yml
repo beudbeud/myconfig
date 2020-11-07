@@ -4,5 +4,6 @@
     #- ly
     #- kitty
     #- regolith
-    - zsh
+    #- zsh
     #- nerdfonts
+    - polybar
