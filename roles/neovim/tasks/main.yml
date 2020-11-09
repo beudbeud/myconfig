@@ -2,11 +2,13 @@
   package:
     name: vim-nox
     state: absent
+  become: true
 
 - name: Install NeoVIM
   package:
     name: neovim
     state: present
+  become: true
 
 - name: Create nvim directory
   file:
