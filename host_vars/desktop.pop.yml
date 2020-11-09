@@ -1,6 +1,6 @@
 polybar_modules_left:
   - i3
-  - xwindows
+  - xwindow
 
 polybar_modules_center:
   - spotify

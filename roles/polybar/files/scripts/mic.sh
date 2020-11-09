@@ -20,10 +20,10 @@ then
 else
 	if [ "$muted"  == "no" ]
 	then
-		echo ""
+		echo ""
 		exit 0
 	else
-		echo ""
+		echo ""
 		exit 0
 	fi
 fi
