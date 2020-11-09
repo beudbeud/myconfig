@@ -1,8 +1,26 @@
 polybar_modules_left:
   - i3
-  - xwindows
+  - xwindow
+
+polybar_modules_center:
+  - spotify
+  - previous
+  - playpause
+  - next
+
+polybar_modules_right:
+  - pulseaudio
+  - mic
+  - backlight-acpi
+  - cpu
+  - memory
+  - temperature
+  - battery
+  - wlan
+  - date
+  - rofi_powermenu
 
 polybar_fonts:
-  - "Ubuntuo Nerd Font:style=Regular:size=10:antialias=true;2"
+  - "Ubuntuo Nerd Font:style=Regular:size=11:antialias=true;2"
   - "unifont:fontformat=truetype:size=8:antialias=false;0"
   - "Ubuntu Nerd Font:style=Regular:size=12:antialias=true;2"

@@ -1,0 +1,1 @@
+rofi_config_dir: "{{ lookup('env', 'HOME') }}/.config/rofi"

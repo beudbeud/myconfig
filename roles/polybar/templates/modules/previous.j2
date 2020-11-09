@@ -1,0 +1,7 @@
+[module/previous]
+type = custom/script
+exec = echo "玲"
+format = <label>
+click-left = playerctl previous spotify
+format-foreground = ${colors.foreground-alt}
+exec-if = playerctl --player=spotify status >/dev/null 2>&1

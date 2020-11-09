@@ -11,9 +11,10 @@
 - name: Copy configuration
   template:
     src: config.j2
-    dest: /tmp/poly_config
+    dest: "{{ polybar_config_dir }}/config"
 
-- debug:
-    msg: "{{ ansible_fqdn }}"
-
-
+- name: Install all scripts
+  copy:
+    src: scripts/
+    dest: "{{ polybar_config_dir }}/scripts"
+    mode: 0755

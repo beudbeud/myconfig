@@ -1,0 +1,30 @@
+- name: Install Rofi
+  package:
+    name: rofi
+    state: present
+  become: yes
+
+- name: Install scrot
+  package:
+    name: scrot
+    state: present
+  become: yes
+
+- name: Create Rofi configuration directory
+  file:
+    path: "{{ rofi_config_dir }}/{{ item }}"
+    state: directory
+  loop:
+    - themes
+    - scripts
+
+- name: Copy themes
+  copy:
+    src: dracula.rasi
+    dest: "{{ rofi_config_dir }}/themes"
+
+- name: Copy scripts
+  copy:
+    src: scripts/
+    dest: "{{ rofi_config_dir }}/scripts"
+    mode: 0755

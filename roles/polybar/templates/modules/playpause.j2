@@ -1,0 +1,8 @@
+[module/playpause]
+type = custom/ipc
+hook-0 = echo ""
+hook-1 = echo ""
+hook-2 = echo "契"
+initial = 1
+click-left = playerctl play-pause spotify
+format-foreground = ${colors.foreground-alt}

@@ -46,7 +46,5 @@
     depth: 1
   loop: "{{ zsh_themes }}"
 
-- name: Init gitstatus
-  shell: GITSTATUS_LOG_LEVEL=DEBUG gitstatus_start -s -1 -u -1 -d -1 -c -1 -m -1 -a POWERLEVEL9K
-  args:
-    executable: /bin/zsh
+#- name: Init gitstatus
+#  command: /bin/zsh -c 'gitstatus_start -s -1 -u -1 -d -1 -c -1 -m -1 -a POWERLEVEL9K'

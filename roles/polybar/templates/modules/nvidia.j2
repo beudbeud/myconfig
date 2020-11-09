@@ -1,0 +1,10 @@
+[module/nvidia]
+type = custom/script
+tail = true
+exec-if = nvidia-smi
+exec = nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits | sed -ur 's|([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)[^[:digit:]]*([[:digit:]]+)|\1°|g'
+interval = 2
+
+format-prefix = "ﳳ "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #CAA8FA
