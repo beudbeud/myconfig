@@ -1,0 +1,32 @@
+- name: Create themes directory
+  file:
+    path: "{{ lookup('env', 'HOME')}}/.themes/dracula"
+    state: directory
+
+- name: Install GTK theme for Dracula
+  unarchive:
+    src: https://github.com/dracula/gtk/archive/master.tar.gz
+    dest: "{{ lookup('env', 'HOME')}}/.themes/dracula"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+
+- name: Install Kitty theme
+  unarchive:
+    src: https://github.com/dracula/kitty/archive/master.tar.gz
+    dest: "{{ lookup('env', 'HOME')}}/.config/kitty"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+
+- name: Install Papirus icon theme
+  package:
+    name: papirus-icon-theme
+    state: present
+
+- name: Install Papirus-folders
+  shell: "https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-folders/master/install.sh | sh"
+  args:
+    creates: /usr/bin/papirus-folders
+  become: true
+
+- name: Configure folder color
+  shell: papirus-folders -C violet
