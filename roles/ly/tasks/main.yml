@@ -3,6 +3,7 @@
     name: "{{ item }}"
     state: present
   loop: "{{ package_list }}"
+  become: true
 
 - name: Check if oh-my-zsh already exist
   stat:
