@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ -f /usr/bin/nvidia-smi ]; then
+	if /usr/bin/nvidia-smi > /dev/null 2>&1; then
+		opts='/usr/bin/nvidia-smi'
+	fi
+fi
+
+if [[ -f "$HOME/.config/regolith/compton/config" ]]; then
+  /usr/bin/compton -f --config $HOME/.config/regolith/compton/config $opts
+else
+  /usr/bin/compton -f --config /etc/regolith/compton/config $opts
+fi

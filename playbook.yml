@@ -2,9 +2,8 @@
   roles:
     - dracula
     - neovim
-    - ly
     - kitty
-    - regolith
+    - regolith2
     - zsh
     - nerdfonts
     - polybar

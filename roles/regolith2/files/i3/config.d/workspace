@@ -1,0 +1,14 @@
+# Apply awesome layout
+bindsym $mod+Shift+l exec $HOME/.local/bin/awesome-auto-layout
+
+set $monitor_one "DP-0"
+set $monitor_two "HDMI-0"
+
+workspace 1 output $monitor_one
+workspace 2 output $monitor_one
+workspace 3 output $monitor_one
+workspace 4 output $monitor_one
+workspace 5 output $monitor_two
+workspace 6 output $monitor_two
+workspace 7 output $monitor_two
+workspace 8 output $monitor_two
