@@ -5,6 +5,7 @@ package_install:
   - htop
   - nitrogen
   - numlockx
+  - maim
 
 package_remove:
   - pop-shop
