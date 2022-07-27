@@ -21,9 +21,10 @@
   package:
     name: papirus-icon-theme
     state: present
+  become: true
 
 - name: Install Papirus-folders
-  shell: "https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-folders/master/install.sh | sh"
+  shell: "wget https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-folders/master/install.sh | sh"
   args:
     creates: /usr/bin/papirus-folders
   become: true

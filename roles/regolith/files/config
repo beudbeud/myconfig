@@ -100,7 +100,9 @@ set_from_resource $i3-wm.program.file_search i3-wm.program.file_search rofi -sho
 bindsym $mod+$alt+space exec $i3-wm.program.file_search
 
 ## Screenshot
-bindsym Print exec $HOME/.config/rofi/scripts/scrot.sh 
+bindsym Print exec --no-startup-id maim "/home/$USER/Images/shots/$(date +"%m-%d-%Y-%s").jpg"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Images/shots/$(date +"%m-%d-%Y-%s").jpg"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Images/shots/$(date +"%m-%d-%Y-%s").jpg"
 
 ###############################################################################
 # Window and Workspace Navigation
@@ -154,6 +156,15 @@ bindsym $mod+$alt+Left workspace prev
 
 ## Navigate // Scratchpad // <><Ctrl> a ##
 bindsym $mod+Ctrl+a scratchpad show
+
+workspace "$ws1" output eDP
+workspace "$ws2" output eDP
+workspace "$ws3" output eDP
+workspace "$ws4" output eDP
+workspace "$ws5" output DisplayPort-0 
+workspace "$ws6" output DisplayPort-0 
+workspace "$ws7" output DisplayPort-0 
+workspace "$ws8" output DisplayPort-0 
 
 ###############################################################################
 # Window and Workspace Configuration

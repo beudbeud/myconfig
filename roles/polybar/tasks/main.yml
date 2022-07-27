@@ -1,6 +1,7 @@
 - name: Install Polybar
   package:
     name: polybar
+  become: true
 
 - name: Create Polybar Directory
   file:

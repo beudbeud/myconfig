@@ -2,6 +2,7 @@
   package:
     name: kitty
     state: present
+  become: true
 
 - name: Create config directory
   file:
@@ -17,3 +18,4 @@
   alternatives:
     name: x-terminal-emulator
     path: /usr/bin/kitty
+  become: true

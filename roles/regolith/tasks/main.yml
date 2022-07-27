@@ -1,18 +1,18 @@
-- name: Copy Regolith Repo GPG key
-  get_url:
-    url: https://regolith-linux.github.io/package-repo/regolith.key
-    dest: /etc/apt/trusted.gpg.d/regolith.asc
-  become: true
-
 - name: Add Regolith repo
   apt_repository:
-    repo: deb https://regolith-release-ubuntu-jammy-amd64.s3.amazonaws.com jammy main
-    state: present
+    repo: ppa:regolith-linux/release
   become: true
+  ignore_errors: true
 
 - name: Install Regolith
   package:
     name: regolith-desktop
+    state: present
+  become: true
+
+- name: Install lightdm theme
+  package:
+    name: regolith-lightdm-config
     state: present
   become: true
 

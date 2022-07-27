@@ -1,0 +1,59 @@
+polybar_modules_left:
+  - i3
+  - xwindow
+
+polybar_modules_center: []
+  
+polybar_modules_right:
+  - pulseaudio
+  - backlight-acpi
+  - cpu
+  - memory
+  - temperature
+  - battery
+  - wlan
+  - date
+  - ilia_powermenu
+
+polybar_fonts:
+  - "Ubuntuo Nerd Font:style=Regular:size=11:antialias=true;2"
+  - "unifont:fontformat=truetype:size=8:antialias=false;0"
+  - "Ubuntu Nerd Font:style=Regular:size=12:antialias=true;2"
+
+list_repo:
+  - name: ansible
+    url: 'ppa:ansible/ansible'
+  - name: chrome
+    url: 'deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main'
+  - name: hashicorp
+    url: 'deb [arch=amd64] https://apt.releases.hashicorp.com impish main'
+
+package_delete:
+  - i3xrocks-net-traffic
+  - i3xrocks-cpu-usage
+  - i3xrocks-time
+  - vim
+  - snapd
+
+package_install:
+  - playerctl
+  - gparted
+  - papirus-icon-theme
+  - htop
+  - nitrogen
+  - numlockx
+  - maim
+  - jq
+  - pipenv
+  - fzf
+  - dunst
+  - gnome-calendar
+  - ansible
+  - usb-creator-gtk
+  - gparted
+  - neovim
+  - ruby-dev
+  - ruby-rubygems
+  - vault
+  - fonts-noto-color-emoji
+  - fonts-noto-extra

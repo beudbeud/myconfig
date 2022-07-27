@@ -6,6 +6,7 @@ package_install:
   - nitrogen
   - numlockx
   - maim
+  - dfc
 
 package_remove:
   - pop-shop
@@ -23,6 +24,28 @@ zsh_plugins:
 zsh_themes:
   - name: powerlevel10k
     url: https://github.com/romkatv/powerlevel10k.git
+
+polybar_modules_left:
+  - i3
+  - xwindow
+
+polybar_modules_center: []
+
+polybar_modules_right:
+  - pulseaudio
+  - backlight-acpi
+  - cpu
+  - memory
+  - temperature
+  - battery
+  - wlan
+  - date
+  - rofi_powermenu
+
+polybar_fonts:
+  - "Ubuntuo Nerd Font:style=Regular:size=10:antialias=true;2"
+  - "unifont:fontformat=truetype:size=8:antialias=false;0"
+  - "Ubuntu Nerd Font:style=Regular:size=12:antialias=true;2"
 
 nf_user: "{{ lookup('env', 'USER') }}"
 

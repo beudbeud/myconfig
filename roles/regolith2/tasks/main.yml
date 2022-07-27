@@ -6,8 +6,13 @@
 
 - name: Add Regolith repo
   apt_repository:
-    repo: deb https://regolith-release-ubuntu-jammy-amd64.s3.amazonaws.com jammy main
+    repo: deb [arch=amd64] https://regolith-release-ubuntu-jammy-amd64.s3.amazonaws.com jammy main
     state: present
+  become: true
+
+- name: Run the equivalent of "apt-get update"
+  apt:
+    update_cache: yes
   become: true
 
 - name: Install Regolith
@@ -17,12 +22,14 @@
   become: true
 
 - name: Install lightDM
-  package: regolith-lightdm-config
+  package: 
+    name: regolith-lightdm-config
     state: present
   become: true
 
 - name: Delete Unneeded packages
-  package: gdm3 gnome-shell evolution-data-server*
+  package: 
+    name: gdm3 gnome-shell
     state: absent
   become: true
 
@@ -34,7 +41,7 @@
 
 - name: Configure i3
   copy:
-    src: config
+    src: i3
     dest: "{{ config_dir }}/i3"
 
 - name: Configure Xressources
@@ -57,5 +64,7 @@
 - name: Copy powermenu
   copy:
     src: powermenu.sh
-    dest: {{ config_dir }}/powermenu.sh
+    dest: "{{ config_dir }}/powermenu.sh"
     mode: 0755
+
+- name: Disable

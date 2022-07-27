@@ -1,0 +1,52 @@
+- name: Add repo
+  apt_repository:
+    repo: "{{ item.url }}"
+    state: present
+  loop: "{{ list_repo }}"
+  become: true
+
+- name: Run the equivalent of "apt-get update"
+  apt:
+    update_cache: yes
+  become: true
+
+- name: Remove some pacakges
+  package:
+    name: "{{ package_delete }}"
+    state: absent
+  become: true
+
+- name: Install tools
+  package:
+    name: "{{ package_install }}"
+    state: present
+  become: true
+
+- name: Config emoji
+  block:
+    - name: Create fontconfig directory
+      file:
+        path: "{{ lookup('env', 'HOME') }}/.config/fontconfig"
+        state: directory
+    - name: Copy config file for fonts
+      copy:
+        src: fonts.conf
+        dest: "{{ lookup('env', 'HOME') }}/.config/fontconfig"
+      notify: fc-cache
+
+- name: Fix firefox
+  block:
+    - name: Add firefox ppa
+      apt_repository:
+        repo: 'ppa:mozillateam/ppa'
+        state: present
+    - name: Put apt pinning
+      copy:
+        src: mozilla-firefox
+        dest: /etc/apt/preferences.d
+    - name: Update apt
+      apt:
+        name: firefox
+        state: present
+        update_cache: yes
+  become: true
