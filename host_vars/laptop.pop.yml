@@ -9,8 +9,6 @@ polybar_modules_center:
   - next
 
 polybar_modules_right:
-  - pulseaudio
-  - mic
   - backlight-acpi
   - cpu
   - memory
@@ -18,7 +16,7 @@ polybar_modules_right:
   - battery
   - wlan
   - date
-  - rofi_powermenu
+  - ilia_powermenu
 
 polybar_fonts:
   - "Ubuntuo Nerd Font:style=Regular:size=11:antialias=true;2"
